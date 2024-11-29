@@ -13,11 +13,23 @@
                     Press Statement / News / Events
                 </p>
                 <form @submit.prevent="logout">
-                    <Button class="bg-red-500 rounded px-4 py-2">
+                    <Button class="bg-red-500 rounded px-4 py-2 mb-4 mt-4">
                         Log Out
                     </Button>                   
                 </form>
+
+                <Link
+                    :href="route('login')"
+                    class="bg-blue-500 rounded px-4 py-2">
+                         Log in
+                </Link>
                 
+                <Link
+                     v-if="canRegister"
+                    :href="route('register')"
+                    class="bg-red-600">
+                    Register
+                </Link>
             </div>
             <hr class="mt-4">
         </div>

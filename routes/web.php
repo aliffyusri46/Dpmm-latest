@@ -28,15 +28,17 @@ use App\Http\Controllers\CommentController;
 // })->name('login');
 
 
-Route::get('/welcome', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/welcome', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
+Route::get('/', [BlogController::class, 'index'])->name('index');
+// Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('show');
 
 Route::middleware([
     'auth:sanctum',
@@ -49,8 +51,7 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-
-    Route::get('/', [BlogController::class, 'index'])->name('index');
+    // Route::get('/', [BlogController::class, 'index'])->name('index');
     Route::resource('blogs', BlogController::class)->except(['index']);
     //Route for CommentController
     Route::get('/blogs/{blog}/comments', [CommentController::class, 'index'])->name('comments.index');
